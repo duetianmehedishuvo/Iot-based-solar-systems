@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "454936401333",
+    "firebase_url": "https://shuvo-shop-test-default-rtdb.firebaseio.com",
+    "project_id": "shuvo-shop-test",
+    "storage_bucket": "shuvo-shop-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454936401333:android:783292c4c3e1c0e90e35fc",
+        "android_client_info": {
+          "package_name": "com.shuvo_shop_test.https"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWj6Wz2D1Ad0JZS4GtrSRbDVSs2b88gaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454936401333:android:42b67af514bc3c970e35fc",
+        "android_client_info": {
+          "package_name": "com.solar_systems.https"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWj6Wz2D1Ad0JZS4GtrSRbDVSs2b88gaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
