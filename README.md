@@ -1,4 +1,4 @@
-# IoT-based Solar Powered Aerator for Fish Farmin
+# IoT-based Solar-Powered for Home automation
 Use this configuration for development
 
 Flutter 3.16.2 • channel stable • https://github.com/flutter/flutter.git
