@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:women_safety/screen/auth/login_screen.dart';
 import 'package:women_safety/screen/dashboard/dashboard_screen.dart';
 import 'package:women_safety/util/theme/app_colors.dart';
 import 'package:women_safety/util/theme/text.styles.dart';
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 4), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const DashboardScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) =>  LoginScreen()));
     });
   }
 

@@ -22,7 +22,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('IoT-based Solar Systems', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
+          title: Text('IoT-based Solar System Control', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
           centerTitle: true,
           backgroundColor: colorPrimary),
       body: StreamBuilder(
@@ -43,7 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const SizedBox(height: 10),
                   eachRow("Battery-Life", '${snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(2).value.toString()} %'),
                   eachRow(
-                    "Light",
+                    "Light Control",
                     status ? "ON" : "OFF",
                     widget: Container(
                       height: 18,
@@ -59,6 +59,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                   ),
+                  eachRow(
+                    "Fan Control",
+                    !status ? "ON" : "OFF",
+                    widget: Container(
+                      height: 18,
+                      width: 20,
+                      alignment: Alignment.centerRight,
+                      child: Switch(
+                        onChanged: (bool value) {
+                          MessageDao.messagesRef.ref.child("SENSOR_DATA").update({"light_status": status ? "0" : "1"});
+                        },
+                        value: !status,
+                        activeColor: Colors.white,
+                        activeTrackColor: colorPrimary,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Warning notification show if fan or light load ON and battery life will goes to 20%',
+                      style: sfProStyle600SemiBold.copyWith(fontSize: 15, color: colorPrimary),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Warning!!!',
+                    style: sfProStyle700Bold.copyWith(fontSize: 25, color: Colors.red),
+                    textAlign: TextAlign.center,
+                  )
                 ],
               ),
             );
