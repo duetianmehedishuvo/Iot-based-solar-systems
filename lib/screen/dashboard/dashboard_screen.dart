@@ -34,7 +34,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               return const Center(child: CircularProgressIndicator());
             }
 
+
             bool status = int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(0).value.toString()) == 1;
+            bool fanStatus = int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(3).value.toString()) == 1;
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -61,16 +63,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   eachRow(
                     "Fan Control",
-                    !status ? "ON" : "OFF",
+                    !fanStatus ? "ON" : "OFF",
                     widget: Container(
                       height: 18,
                       width: 20,
                       alignment: Alignment.centerRight,
                       child: Switch(
                         onChanged: (bool value) {
-                          MessageDao.messagesRef.ref.child("SENSOR_DATA").update({"light_status": status ? "0" : "1"});
+                          MessageDao.messagesRef.ref.child("SENSOR_DATA").update({"fan_status": fanStatus ? "0" : "1"});
                         },
-                        value: !status,
+                        value: !fanStatus,
                         activeColor: Colors.white,
                         activeTrackColor: colorPrimary,
                       ),
@@ -87,11 +89,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
+                  int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(2).value.toString())<50?
                   Text(
                     'Warning!!!',
                     style: sfProStyle700Bold.copyWith(fontSize: 25, color: Colors.red),
                     textAlign: TextAlign.center,
-                  )
+                  ):SizedBox(width: 0)
                 ],
               ),
             );
