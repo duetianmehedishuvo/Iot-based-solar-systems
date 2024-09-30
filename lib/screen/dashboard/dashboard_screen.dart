@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:women_safety/helper/message_dao.dart';
+import 'package:women_safety/screen/astromy_day_screen.dart';
+import 'package:women_safety/screen/planet_screen.dart';
+import 'package:women_safety/util/helper.dart';
+import 'package:women_safety/util/size.util.dart';
 import 'package:women_safety/util/theme/app_colors.dart';
 import 'package:women_safety/util/theme/text.styles.dart';
+import 'package:women_safety/widgets/custom_button.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -22,7 +27,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('IoT-based Solar System Control', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
+          leading: spaceZero,
+          title: Text('Solar System', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
           centerTitle: true,
           backgroundColor: colorPrimary),
       body: StreamBuilder(
@@ -34,12 +40,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               return const Center(child: CircularProgressIndicator());
             }
 
-
             bool status = int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(0).value.toString()) == 1;
             bool fanStatus = int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(3).value.toString()) == 1;
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
+              child: ListView(
                 children: [
                   Padding(padding: const EdgeInsets.all(8.0), child: Lottie.asset('assets/raw/solar_home.json')),
                   const SizedBox(height: 10),
@@ -78,23 +83,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Warning notification show if fan or light load ON and battery life will goes to 20%',
-                      style: sfProStyle600SemiBold.copyWith(fontSize: 15, color: colorPrimary),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(2).value.toString())<50?
-                  Text(
-                    'Warning!!!',
-                    style: sfProStyle700Bold.copyWith(fontSize: 25, color: Colors.red),
-                    textAlign: TextAlign.center,
-                  ):SizedBox(width: 0)
+                  // Container(
+                  //   padding: EdgeInsets.all(15),
+                  //   decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                  //   alignment: Alignment.center,
+                  //   child: Text(
+                  //     'Warning notification show if fan or light load ON and battery life will goes to 20%',
+                  //     style: sfProStyle600SemiBold.copyWith(fontSize: 15, color: colorPrimary),
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 20),
+                  int.parse(snapshot.data!.snapshot.child('SENSOR_DATA').children.elementAt(2).value.toString()) < 50
+                      ? Text(
+                          'Warning!!!',
+                          style: sfProStyle700Bold.copyWith(fontSize: 25, color: Colors.red),
+                          textAlign: TextAlign.center,
+                        )
+                      : SizedBox(width: 0),
+                  spaceHeight15,
+                  CustomButton(
+                      btnTxt: 'Astronomy picture',
+                      onTap: () {
+                        Helper.toScreen( AstronomyDayScreen());
+
+                      }),
+                  spaceHeight15,
+                  CustomButton(
+                      btnTxt: 'Planets',
+                      onTap: () {
+                        Helper.toScreen( PlanetScreen());
+                        // Helper.toRemoveUntilScreen(const AstronomyScreen());
+                      }),
                 ],
               ),
             );
@@ -112,7 +132,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             Expanded(flex: 2, child: Text(key, style: sfProStyle600SemiBold.copyWith(fontSize: 14, color: Colors.black))),
             VerticalDivider(color: colorIcons.withOpacity(.6), thickness: 1.1),
-            Expanded(child: widget ?? Text(value, textAlign: TextAlign.end, style: sfProStyle400Regular.copyWith(fontSize: 16, color: Colors.black))),
+            Expanded(
+                child: widget ??
+                    Text(value, textAlign: TextAlign.end, style: sfProStyle400Regular.copyWith(fontSize: 16, color: Colors.black))),
           ],
         ),
       ),

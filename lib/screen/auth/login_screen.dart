@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:women_safety/screen/auth/signup_screen.dart';
 import 'package:women_safety/screen/auth/widget/header_widget.dart';
 import 'package:women_safety/screen/dashboard/dashboard_screen.dart';
+import 'package:women_safety/screen/map_screen/map_screen.dart';
 import 'package:women_safety/util/helper.dart';
 import 'package:women_safety/util/size.util.dart';
 import 'package:women_safety/util/theme/app_colors.dart';
@@ -77,15 +78,8 @@ class LoginScreen extends StatelessWidget {
                           btnTxt: 'Login',
                           onTap: () {
 
-                            // Helper.toScreen(const Home2Screen());
-                            Helper.toRemoveUntilScreen(const DashboardScreen());
+                            Helper.toRemoveUntilScreen(const MapScreen());
 
-                            // if (phoneController.text.isEmpty || passwordController.text.isEmpty) {
-                            //   showMessage(message: 'Please fill up all the fields');
-                            // } else {
-                            //   Helper.toScreen(context,  HomeScreen());
-                            //
-                            // }
                           }),
                       const SizedBox(height: 20),
                       CustomText(

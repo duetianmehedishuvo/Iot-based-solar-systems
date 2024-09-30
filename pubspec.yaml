@@ -42,6 +42,15 @@ dependencies:
   firebase_database: ^10.3.8
   url_launcher: ^6.2.2
   lottie: ^2.7.0
+  provider: ^6.1.2
+  dio: ^5.7.0
+  google_fonts: ^6.2.1
+  permission_handler: ^11.3.1
+  geocoding: ^3.0.0
+  geolocator:
+  google_maps_flutter:
+  custom_marker: ^1.0.0
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:

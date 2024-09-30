@@ -1,12 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:women_safety/provider/home_provider.dart';
 import 'package:women_safety/screen/splash_screen.dart';
 import 'package:women_safety/util/helper.dart';
 
+import 'di_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await di.init();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyCWj6Wz2D1Ad0JZS4GtrSRbDVSs2b88gaU",
@@ -16,8 +20,12 @@ void main() async {
     ),
   );
 
-
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) => runApp(MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => di.sl<HomeProvider>()),
+        ],
+        child: const MyApp(),
+      )));
 }
 
 class MyApp extends StatelessWidget {

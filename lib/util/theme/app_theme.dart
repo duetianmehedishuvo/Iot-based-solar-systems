@@ -15,7 +15,7 @@ class AppTheme{
       primaryColor: AppColors.primaryColorLight,
 
       scaffoldBackgroundColor:AppColors.lightThemeColors['backgroundColor'],
-      backgroundColor:  AppColors.lightThemeColors['backgroundColor'],
+      // backgroundColor:  AppColors.lightThemeColors['backgroundColor'],
       primaryColorDark: AppColors.primaryColorDark,
       cardColor: Colors.white,
       canvasColor: AppColors.lightThemeColors['backgroundColor'],
@@ -55,7 +55,7 @@ class AppTheme{
       primaryColor: AppColors.primaryColorDark,
 
       scaffoldBackgroundColor: AppColors.black,
-      backgroundColor: AppColors.black,
+      // backgroundColor: AppColors.black,
       primaryColorDark: AppColors.primaryColorDark,
       cardColor: AppColors.grey,
       canvasColor:AppColors.black,
