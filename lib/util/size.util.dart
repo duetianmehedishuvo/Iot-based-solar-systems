@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:women_safety/util/helper.dart';
-import 'package:flutter/material.dart';
 
 const kDefaultPadding = 20.0;
 

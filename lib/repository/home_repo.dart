@@ -3,7 +3,6 @@ import 'package:women_safety/datasource/remote/dio/dio_client.dart';
 import 'package:women_safety/datasource/remote/exception/api_error_handler.dart';
 import 'package:women_safety/model/base/api_response.dart';
 import 'package:women_safety/provider/home_provider.dart';
-import 'package:women_safety/util/app_constant.dart';
 
 class HomeRepo {
   final DioClient dioClient;

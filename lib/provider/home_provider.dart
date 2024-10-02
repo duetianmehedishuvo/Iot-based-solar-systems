@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
+
 import 'package:custom_marker/marker_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:women_safety/model/astrony_day_model.dart';
 import 'package:women_safety/model/base/api_response.dart';
 import 'package:women_safety/model/planet1_model.dart';
@@ -14,7 +13,6 @@ import 'package:women_safety/model/satellite_model.dart';
 import 'package:women_safety/repository/home_repo.dart';
 import 'package:women_safety/screen/dashboard/dashboard_screen.dart';
 import 'package:women_safety/util/helper.dart';
-import '../util/theme/app_colors.dart';
 
 class HomeProvider with ChangeNotifier {
   final HomeRepo homeRepo;
@@ -64,7 +62,7 @@ class HomeProvider with ChangeNotifier {
               initializeSatelliteDetails();
               _showBottomSheet(Helper.navigatorKey.currentState!.context);
             },
-            position: LatLng(element['satlat'], element['satlng']),
+            position: LatLng(double.parse(element['satlat'].toString()), double.parse(element['satlng'].toString())),
             infoWindow: InfoWindow(title: element['satname']),
             icon: await MarkerIcon.pictureAsset(assetPath: 'assets/images/satellite.png', width: 200, height: 200)));
         satelliteList.add(v);
@@ -77,8 +75,8 @@ class HomeProvider with ChangeNotifier {
     }
     notifyListeners();
 
-    // Schedule the next call in 2 minutes
-    Timer(Duration(seconds: 20), () {
+    // // Schedule the next call in 2 minutes
+    Timer(const Duration(seconds: 20), () {
       initializeAllSatellite();
     });
   }
@@ -107,11 +105,11 @@ class HomeProvider with ChangeNotifier {
         return Consumer<HomeProvider>(
             builder: (context, homeProvider, child) => Container(
                   height: 400,
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: homeProvider.isLoadingSatelliteDetails
-                      ? Container(
+                      ? SizedBox(
                           width: screenWeight(),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CircularProgressIndicator(),
@@ -121,19 +119,19 @@ class HomeProvider with ChangeNotifier {
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
+                            const Text(
                               'Satellite Details',
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text('Name: ${homeProvider.selectSatelliteModel.satname ?? 'N/A'}'),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text('ID: ${homeProvider.selectSatelliteModel.satid ?? 'N/A'}'),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Expanded(
                               child: ListView.builder(
                                 itemCount: homeProvider.satelliteDetailsModel.passes?.length ?? 0,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   var pass = homeProvider.satelliteDetailsModel.passes![index];
                                   return Column(
@@ -144,7 +142,7 @@ class HomeProvider with ChangeNotifier {
                                       Text('  Max Azimuth: ${pass.maxAz} (${pass.maxAzCompass})'),
                                       Text('  Max Elevation: ${pass.maxEl}'),
                                       Text('  End Azimuth: ${pass.endAz} (${pass.endAzCompass})'),
-                                      SizedBox(height: 8),
+                                      const SizedBox(height: 8),
                                     ],
                                   );
                                 },
@@ -157,14 +155,14 @@ class HomeProvider with ChangeNotifier {
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text('Close'),
+                                  child: const Text('Close'),
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => DashboardScreen()));
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DashboardScreen()));
                                   },
-                                  child: Text('Solar'),
+                                  child: const Text('Solar'),
                                 ),
                               ],
                             ),
@@ -222,7 +220,6 @@ class HomeProvider with ChangeNotifier {
     isLoadingPlanet1 = false;
     if (apiResponse.response.statusCode == 200) {
       planet1model = Planet1Model.fromJson(apiResponse.response.data[0]);
-
     } else {
       // showScaffoldSnackBar(context: context, message: apiResponse.error.toString());
     }
@@ -230,9 +227,9 @@ class HomeProvider with ChangeNotifier {
   }
 
   initializePlanet2() async {
-    isLoadingPlanet1 = true;
+    // isLoadingPlanet1 = true;
     ApiResponse apiResponse = await homeRepo.planets2(selectPlanet);
-    isLoadingPlanet1 = false;
+    // isLoadingPlanet1 = false;
     if (apiResponse.response.statusCode == 200) {
       planet2model = Planet2Model.fromJson(apiResponse.response.data);
     } else {

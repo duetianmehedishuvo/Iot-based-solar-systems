@@ -20,8 +20,8 @@ class DioClient {
     dio1 = dioC;
     dio
       ..options.baseUrl = baseUrl
-      ..options.connectTimeout = Duration(minutes: 3)
-      ..options.receiveTimeout = Duration(minutes: 3)
+      ..options.connectTimeout = const Duration(minutes: 3)
+      ..options.receiveTimeout = const Duration(minutes: 3)
       ..httpClientAdapter
       ..options.headers = {'Content-Type': 'application/json; charset=UTF-8', "Accept": "application/json"};
     dio.interceptors.add(loggingInterceptor!);
@@ -33,12 +33,11 @@ class DioClient {
     dio = dio1;
     dio
       ..options.baseUrl = baseUrl
-      ..options.connectTimeout = Duration(minutes: 3)
-      ..options.receiveTimeout = Duration(minutes: 3)
+      ..options.connectTimeout = const Duration(minutes: 3)
+      ..options.receiveTimeout = const Duration(minutes: 3)
       ..httpClientAdapter
       ..options.headers = {'Content-Type': 'application/json; charset=UTF-8', "Accept": "application/json", 'Authorization': 'Bearer $token'};
     dio.interceptors.add(loggingInterceptor!);
-    print('asdascasd');
   }
 
 
@@ -61,9 +60,9 @@ class DioClient {
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } on FormatException catch (_) {
-      throw FormatException("Unable to process the data");
+      throw const FormatException("Unable to process the data");
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -88,9 +87,9 @@ class DioClient {
       );
       return response;
     } on FormatException catch (_) {
-      throw FormatException("Unable to process the data");
+      throw const FormatException("Unable to process the data");
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -115,9 +114,9 @@ class DioClient {
       );
       return response;
     } on FormatException catch (_) {
-      throw FormatException("Unable to process the data");
+      throw const FormatException("Unable to process the data");
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -138,9 +137,9 @@ class DioClient {
       );
       return response;
     } on FormatException catch (_) {
-      throw FormatException("Unable to process the data");
+      throw const FormatException("Unable to process the data");
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

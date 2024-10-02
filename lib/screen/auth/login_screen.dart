@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:women_safety/screen/auth/signup_screen.dart';
 import 'package:women_safety/screen/auth/widget/header_widget.dart';
-import 'package:women_safety/screen/dashboard/dashboard_screen.dart';
 import 'package:women_safety/screen/map_screen/map_screen.dart';
 import 'package:women_safety/util/helper.dart';
 import 'package:women_safety/util/size.util.dart';

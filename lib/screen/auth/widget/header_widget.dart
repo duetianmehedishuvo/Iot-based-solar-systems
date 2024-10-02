@@ -46,7 +46,7 @@ class HeaderWidget extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(40)),
-              child: Text('IoT-based Solar System Control',
+              child: Text('SolOptima',
                   style: sfProStyle500Medium.copyWith(color: colorPrimary, fontSize: 13), textAlign: TextAlign.center)),
           const SizedBox(height: 8),
           Center(child: CustomText(title: title, textStyle: sfProStyle600SemiBold.copyWith(color: Colors.white, fontSize: 18))),

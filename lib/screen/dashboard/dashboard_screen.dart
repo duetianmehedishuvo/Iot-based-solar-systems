@@ -28,7 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
           leading: spaceZero,
-          title: Text('Solar System', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
+          title: Text('SolOptima', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
           centerTitle: true,
           backgroundColor: colorPrimary),
       body: StreamBuilder(
@@ -100,19 +100,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           style: sfProStyle700Bold.copyWith(fontSize: 25, color: Colors.red),
                           textAlign: TextAlign.center,
                         )
-                      : SizedBox(width: 0),
+                      : const SizedBox(width: 0),
                   spaceHeight15,
                   CustomButton(
                       btnTxt: 'Astronomy picture',
                       onTap: () {
-                        Helper.toScreen( AstronomyDayScreen());
+                        Helper.toScreen( const AstronomyDayScreen());
 
                       }),
                   spaceHeight15,
                   CustomButton(
                       btnTxt: 'Planets',
                       onTap: () {
-                        Helper.toScreen( PlanetScreen());
+                        Helper.toScreen( const PlanetScreen());
                         // Helper.toRemoveUntilScreen(const AstronomyScreen());
                       }),
                 ],
